@@ -10,9 +10,13 @@ entity test_tb is
 end entity;
 
 architecture tb of test_tb is
+	--add signals if UUT has inputs/outputs here
 begin
 
 	-- Instantiate UUT here
+	UUT : entity work.test(beh);
+	--add port map();
+
 
 	stimuli : process
 	begin
