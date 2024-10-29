@@ -14,7 +14,8 @@ architecture tb of test_tb is
 begin
 
 	-- Instantiate UUT here
-	UUT : entity work.test(beh);
+		--select the testing architecture of the design
+	UUT : entity work.test(beh_test3);
 	--add port map();
 
 
