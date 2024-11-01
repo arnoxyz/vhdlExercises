@@ -11,7 +11,9 @@ end entity;
 
 architecture tb of test_tb is
 begin
-	UUT : entity work.test(beh_prev);
+	--UUT : entity work.test(beh_prev);
+	--UUT : entity work.test(beh_arrays);
+	UUT : entity work.test(beh_records);
 
 	stimuli : process
 	begin

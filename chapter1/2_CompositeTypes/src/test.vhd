@@ -90,11 +90,79 @@ begin
 end architecture;
 
 
-architecture beh_compositeTypes of test is 
+architecture beh_arrays of test is 
 begin 
-	compositeTypes : process 
+	arrays: process 
+		--vectors (arrays of same type elements) - homogeneous collection
+		variable a : integer := 0;
+		variable b : integer := 0;
+
+		variable a_vec : integer_vector(3 downto 0) := (0 => 1, others=>0);
+		variable b_vec : integer_vector(0 to 3) := (3 => 1, others=>0);
+
+		--own arrays
+		variable myArr1 : u_t(0 to 13) := (0 => true, 13 => true, others=>false);
+		variable myArr3 : c_t := (0 => true, others=>false);
+
+		--records (like structs in C) - heterogeneous collection
 	begin 
 		report "hello world";
+		report "a=" & to_string(a) & " b= " & to_string(b);
+		report "a_vector=" & to_string(a_vec(a_vec'left)) & " b_vector= " & to_string(b_vec(b_vec'left));
+
+
+		for i in 3 downto 0 loop 
+			report to_string(i) & ": a_vector " & to_string(a_vec(i));
+		end loop;
+
+		for i in 0 to 3 loop 
+			report to_string(i) & ": b_vector " & to_string(b_vec(i));
+		end loop;
+
+		--iterate over array
+		report "length of myArr1: " & to_string(myArr1'length);
+		for i in myArr1'low to myArr1'high loop 
+			report to_string(myArr1(i));
+		end loop;
+
+		--using array range attribute
+		for i in myArr1'range loop 
+			report to_string(myArr1(i));
+		end loop;
 		wait;
+	end process;
+end architecture;
+
+
+architecture beh_records of test is 
+begin 
+	records : process
+		constant p : point_t := (x => 0, y => 0);
+		variable p1 : point_t := (x => 10, y => 10);
+		variable u : ur_t(a(1 downto 0), b(2 downto 0));
+	begin 
+
+	report "p= (x,y) = (" & to_string(p.x) & "," & to_string(p.y) & ")"; 
+	report "p1= (x,y) = (" & to_string(p1.x) & "," & to_string(p1.y) & ")"; 
+
+	--init whole records using aggregates
+	u := (a =>(0,10), b =>(1,24,67), c =>(1.0,2.0));
+	for i in u.a'range loop
+		report to_string(u.a(i));
+	end loop;
+
+	--only change certain vector in record
+	u.a := (10,15);
+	for i in u.a'range loop
+		report to_string(u.a(i));
+	end loop;
+
+	--using others clause
+	u.a := (others=>1000);
+	for i in u.a'range loop
+		report to_string(u.a(i));
+	end loop;
+
+	wait;
 	end process;
 end architecture;
