@@ -9,7 +9,6 @@ entity test is
 end entity;
 
 architecture beh_prev of test is 
-
 begin 
 	--repeat previous lectures
 	--processes
@@ -92,4 +91,22 @@ begin
 		--report "hello world, " & to_string(SCREEN_HEIGHT);
 		wait;
 	end process;
+end architecture;
+
+architecture beh_entitiearchitecture of test is 
+begin 
+	--entities - describe the interface (Socket) inputs/outputs
+		--Parameters (only constants allowed) defined in : generics();
+		--I/O defined in : port();
+
+	--example Entitie:
+		--and.vhd - basic input/output 
+		--and_generic.vhd - same with generic inputs/outputs
+
+	--architectures - describe the implementation (Chip)
+		--declarative part (declare signals, constants, components)
+		--statement part ()
+
+	--processes - way to describe hardware with known sequential statements (loops, if, select)
+
 end architecture;

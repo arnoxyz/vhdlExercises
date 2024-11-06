@@ -55,5 +55,3 @@ package test_pkg is
 
 	--record type that has integer_vector with (2 downto 0) and one withouth a constrain
 end package;
-
-
