@@ -58,10 +58,13 @@ package test_pkg is
 	end component;
 
 	component mux_gate is
+		generic(
+			WIDTH : natural := 4
+		);
 		port(
-			I : in std_logic_vector(3 downto 0);
+			I1,I2,I3,I4 : in std_logic_vector(WIDTH-1 downto 0);
 			S : in std_logic_vector(1 downto 0);
-			O : out std_logic
+			O : out std_logic_vector(WIDTH-1 downto 0)
 		);
 	end component;
 end package;

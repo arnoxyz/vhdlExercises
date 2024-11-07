@@ -40,5 +40,28 @@ end architecture;
 
 architecture beh_structural of test is 
 begin 
+	--write a testbench to simulate the mux.vhd
 
+
+	--Instantiate testing unit (UUT = unit under test)
+	--UUT 
+	--apply stimuli and test the end results with assertions or look at 
+	--the waveform in questa sim
+	
+
+	--Additional Wait statements: 
+		--wait until condition;
+		--wait for expression;
+	
+	--Assertion expression must be true else assertion violated
+		--assertion (expression) [report "msg"] [severity error]
+		--severity can be note, warning, error, failure  (predefined enum type)
+			--stops simulation when failure occures
+
+		
+	--Exhaustive testing: 
+		--use loops to loop through all input values and test with assertions
+		--uint = range is 0 to 2**bits-1
+		--sint = range is -2**(bits-1) to 2**(bits)-1
+		--arrays the range attribute can be used 
 end architecture;

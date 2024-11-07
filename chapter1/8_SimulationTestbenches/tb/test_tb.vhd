@@ -10,7 +10,12 @@ entity test_tb is
 end entity;
 
 architecture tb of test_tb is
-	signal a,b,c,d,s1,s2,o : std_logic;
+	constant N : natural := 44;
+
+	signal A : std_logic_vector(N-1 downto 0);
+	signal B : std_logic_vector(N-1 downto 0);
+	signal S : std_logic_vector(1 downto 0);
+	signal O : std_logic_vector(N-1 downto 0);
 begin
 	--review and repeat old lectures
 	--UUT : entity work.test(beh_test);
@@ -18,42 +23,31 @@ begin
 	UUT : entity work.test(beh_structural);
 
 	mux1 : mux_gate 
+	generic map(
+		WIDTH => N
+	)
 	port map(
-		I(0) => a,
-		I(1) => b,
-		I(2) => c,
-		I(3) => d, 
-		s(0) => s1,
-		s(1) => s2,
-		o => o
+		I1 => A, 
+		I2 => A, 
+		I3 => B, 
+		I4 => B, 
+		S => S,
+		O => O 
 	);
 
 	stimuli : process
 	begin
 		-- apply test stimulus here
-		a <= '1';
-		b <= '0';
-		c <= '1';
-		d <= '0';
-		s1 <= '1';
-		s2 <= '1';
+		A <= (others=>'0');
+		B <= (others=>'1');
+		S <= "00";
 		wait for 1 ns;
-		report to_string(0);
+		report to_string(O);
 
-		s1 <= '0';
-		s2 <= '0';
+		S <= "11";
 		wait for 1 ns;
-		report to_string(0);
-		
-		s1 <= '1';
-		s2 <= '0';
-		wait for 1 ns;
-		report to_string(0);
+		report to_string(O);
 
-		s1 <= '0';
-		s2 <= '1';
-		wait for 1 ns;
-		report to_string(0);
 		wait;
 	end process;
 end architecture;

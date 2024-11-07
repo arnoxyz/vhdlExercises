@@ -4,10 +4,13 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 
 entity mux_gate is
+	generic(
+		WIDTH : natural := 4
+	);
 	port(
-		I : in std_logic_vector(3 downto 0);
+		I1, I2, I3, I4 : in std_logic_vector(WIDTH-1 downto 0);
 		S : in std_logic_vector(1 downto 0);
-		O : out std_logic
+		O : out std_logic_vector(WIDTH-1 downto 0)
 	);
 end entity;
 
@@ -18,11 +21,11 @@ begin
 	test : process(all) is 
 	begin 
 		case S is 
-			when "00" => O <= i(0);
-			when "01" => O <= i(1);
-			when "10" => O <= i(2); 
-			when "11" => O <= i(3);
-			when others => O <= 'X';
+			when "00" => O <= I1;
+			when "01" => O <= I2;
+			when "10" => O <= I3; 
+			when "11" => O <= I4;
+			when others => O <= (others =>'X');
 		end case;
 	end process;
 
