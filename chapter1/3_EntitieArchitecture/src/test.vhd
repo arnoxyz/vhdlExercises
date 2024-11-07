@@ -6,6 +6,13 @@ use work.math_pkg.all;
 use work.test_pkg.all;
 
 entity test is
+	port (
+		a : in std_logic := '1';
+		b : in std_logic := '0';
+		o1 : out std_logic := '0';
+		o2 : out std_logic := '0';
+		o3 : out std_logic := '0'
+	);
 end entity;
 
 architecture beh_prev of test is 
@@ -105,8 +112,29 @@ begin
 
 	--architectures - describe the implementation (Chip)
 		--declarative part (declare signals, constants, components)
-		--statement part ()
+		--statement part (concurrent signal assignments, stuctures-modeling, behavior-modeling-> processes)
+
+--3 ways to implement an and_gate
+	--concurrent
+	o1 <= a and b; 
+
+	--behavioral design style 
+	process(a,b) 
+	begin 
+		o2 <= a and b;
+	end process;
+
+	--structure design style
+	AND_GATE1 : entity work.and_gate(beh)
+	port map(
+		a => a,
+		b => b,
+		z => o3
+	);
+
+
 
 	--processes - way to describe hardware with known sequential statements (loops, if, select)
-
+	--Signals: use in architectures, as In/Outputs of chips, represent wires (take last value after wait statement) 
+	--Variables: only usable in processes scope, work like variables in other programming languages
 end architecture;
