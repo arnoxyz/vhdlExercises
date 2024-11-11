@@ -14,14 +14,21 @@ architecture tb of test_tb is
 	signal z2 : std_ulogic;
 begin
 	--review and repeat old lectures
-	--UUT : entity work.test(beh_test);
-	UUT : entity work.test(beh_ieee1164)
+	UUT : entity work.test(beh_test)
 	port map(
 		a => a,
 		b => b,
 		z1 => z1,
 		z2 => z2
 	);
+
+	-- UUT : entity work.test(beh_ieee1164)
+	-- port map(
+	-- 	a => a,
+	-- 	b => b,
+	-- 	z1 => z1,
+	-- 	z2 => z2
+	-- );
 
 	stimuli : process
 	begin

@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.math_pkg.all;
+
 use work.test_pkg.all;
 
 --empty entity 
@@ -17,20 +18,60 @@ end entity;
 architecture beh_test of test is 
 begin 
 	--repeat previous lectures
-	--TODO: write and use a package
-	--TODO: processes
-	--TODO: use variables/constants of own type
-	--TODO: if/elsif/else 
-	--TODO: select (case/when) with own enum type
-	--TODO: use arrays (loop through them and init them) 
-	--TODO: work with records (init using aggregates, access them)
-	--TODO: explain use of entity and architecture 
-	--TODO: explain in detail what the entity structure is (parts of the entity)
-	--TODO: explain in detail what the architecture structure is (parts of the architecutre)
-	--TODO: structure vs. concurrent vs. bheavioral modeling design style (implement and_gate in all 3 styles)
-	--TODO: processes in detail (singals vs variables -> scopes and differet behavior explained)
-	--variables used in processes and subprograms
-	--signals used in entity, architecture(concurrent, behavior, strucutral, packages)
+	--write and use a package
+	--processes
+	start : process(A,B) is 
+		variable day : weekday_t := MO;
+		variable point1 : point_t := (a=>1,b=>2);
+		variable point2 : point_t := (a=>1,b=>4);
+		variable point3 : point_t := (a=>8,b=>2);
+		variable points : points_t(0 to 2) := (0=>point1, 1=>point2, 2=>point3);
+	begin 
+		report(to_string(day));
+		if (A and B)='1' then 
+			report("A bigger");
+		else 
+			report("B bigger");
+		end if;
+
+		case day is  
+			when MO => report("its monday my dudes"); 
+			when others => report("yeh its not monday");
+		end case;
+
+		for i in points'range loop
+			report "a = " & to_string(points(i).a) & " ,b = " & to_string(points(i).b);
+		end loop;
+
+		Z1 <= A or B;
+		Z2 <= B and A;
+	end process;
+
+	--explain use of entity and architecture 
+		--entity used to see the chip as blackbox only the inputs/outputs are visible 
+		--generics can be defined (must be constant) that can be set when instantiate the unit
+
+	--explain in detail what the entity structure is (parts of the entity)
+		--generic(N : integer := 10)
+		--port(A : in integer; B : in integer; C : out integer);
+
+	--explain in detail what the architecture structure is (parts of the architecutre)
+		--architecture of an entity
+		--declaration part => declare internal signals, components, functions, procedures, cosntants
+		--body (part after begin) => implementation of circuit can be done with 
+			--concurrent statemtns (implement formulars directly) Out <= Input xor Input2;
+			--processes (use sequential design style)
+			--structures (instatiate components and connect with design)
+
+	--processes in detail (singals vs variables -> scopes and differet behavior explained)
+		--variables used only in processes and subprograms as local variables that help to calculate/process data
+		--signals used in entity, architecture(concurrent, behavior, strucutral, packages)
+			--very important and completly different from variables and other concepts in software
+			--process is simulated so that signals get only the value when a wait statement is fetched
+			--at that moment all signals are executed concurrent so all signals get the value, before the wait 
+			--statement all signals have the old value assigned before, and if a signal gets more assigns
+			--onyl the last assignment will be recocnised and the value given 
+
 end architecture;
 
 architecture beh_ieee1164 of test is 
@@ -71,7 +112,6 @@ begin
 	--unresolved type not possible = 
 	Z2 <= A;
 	--Z2 <= B;
-
 
 
 	test : process is
