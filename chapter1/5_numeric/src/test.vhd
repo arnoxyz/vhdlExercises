@@ -6,28 +6,94 @@ use work.test_pkg.all;
 
 --empty entity 
 entity test is
+	port (
+		a, b, c : in std_ulogic_vector(3 downto 0);
+		max : out std_ulogic_vector(3 downto 0)
+	);
 end entity;
 
 architecture beh_test of test is 
+	-- signal o : std_ulogic;
+	-- signal i : std_ulogic_vector(7 downto 0) := x"AB";
 begin 
+	process (a, b, c)
+		variable tmp : unsigned(3 downto 0) := (others => '0');
+	begin 
+		tmp := (others => '0');
+		if unsigned(a) >= unsigned(b) then
+			tmp := unsigned(tmp) + unsigned(a);
+		end if;
+		if unsigned(b) >= unsigned(c) then
+			tmp := unsigned(tmp) + unsigned(b);
+		end if;
+		if unsigned(c) >= unsigned(a) then 
+			tmp := unsigned(tmp) + unsigned(c);
+		end if;
+		report to_string(tmp);
+		max <= std_logic_vector(tmp);
+	end process;
+	-- process (all) is 
+	-- begin 
+	-- 	for x in i'range loop
+	-- 		result <= result xor i(x);
+	-- 	end loop;
+	-- 	o <= result;
+	-- end process;
+
+	-- process begin 
+	-- 	report to_string(o);
+	-- 	wait on o;
+	-- end process;
+
 	--repeat previous lectures
-	--TODO: write and use a package
+	--write and use a package
 	--TODO: processes
-	--TODO: use variables/constants of own type
-	--TODO: if/elsif/else 
-	--TODO: select (case/when) with own enum type
-	--TODO: use arrays (loop through them and init them) 
-	--TODO: work with records (init using aggregates, access them)
-	--TODO: explain use of entity and architecture 
-	--TODO: explain in detail what the entity structure is (parts of the entity)
-	--TODO: explain in detail what the architecture structure is (parts of the architecutre)
-	--TODO: structure vs. concurrent vs. bheavioral modeling design style (implement and_gate in all 3 styles)
-	--TODO: processes in detail (singals vs variables -> scopes and differet behavior explained)
+	name1 : process is
+	--declar var,constats, functions, procedures here
+	--use variables/constants of own type
+	--if/elsif/else 
+		constant a : natural_t := 45;
+		constant b : natural_t := 4;
+		variable c : natural_t := 0;
+
+	--select (case/when) with own enum type
+		variable day : day_t := MO;
+	--use arrays (loop through them and init them) 
+		variable int4_arr : int4_vector_t(0 to 4) := (0=>1, 1=>4, 2=>4, 3=>5, 4=>4);
+		variable test : std_logic_vector(7 downto 0) := x"AB";
+	--work with records (init using aggregates, access them)
+		variable point : point_t := (a=>1, b=>2);
+	begin 
+		if a > c then 
+			report "test 1";
+		elsif a > b then
+			report "test 2";
+		end if;
+
+		case day is 
+			when MO => report "its montag";
+			when DI => report "its dienstag";
+			when others => report "other day than mo or di";
+		end case;
+
+		for i in int4_arr'range loop
+			report to_string(i) & " val=" & to_string(int4_arr(i));
+		end loop;
+
+		report to_string(point.a) & " " & to_string(point.b);
+		wait;
+	end process;
+
+	--explain use of entity and architecture 
+	--explain in detail what the entity structure is (parts of the entity)
+	--explain in detail what the architecture structure is (parts of the architecutre)
+	--structure vs. concurrent vs. bheavioral modeling design style (implement and_gate in all 3 styles)
+	--processes in detail (singals vs variables -> scopes and differet behavior explained)
 	--variables used in processes and subprograms
 	--signals used in entity, architecture(concurrent, behavior, strucutral, packages)
-	--TODO: 9 value logic and std_logic, stdulogic, 
-	--TODO: std_ulogic_vecotr and std_logic_vector, values with string literals
-	--TODO: conversion ouput functions for to_string
+	--9 value logic and std_logic, stdulogic, 
+	--std_ulogic_vecotr and std_logic_vector, values with string literals
+	--conversion ouput functions for to_string
 end architecture;
 
 architecture beh_numeric of test is 
