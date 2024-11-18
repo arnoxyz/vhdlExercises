@@ -33,10 +33,11 @@ begin
 		b <= "0110";
 		c <= "0001";
 		wait for 1 ns;
-		a <= "1100";
+
 		b <= "1110";
-		c <= "0001";
 		wait for 1 ns;
+
+		-- wait for 1 ns;
 
 		-- apply test stimulus here
 		wait;

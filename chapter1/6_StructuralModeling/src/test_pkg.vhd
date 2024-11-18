@@ -56,6 +56,19 @@ package test_pkg is
 			C : out std_logic
 		);
 	end component;
+
+	--4bit adder
+	component adder4_gate is 
+		port(
+			A : in std_logic_vector(3 downto 0);
+			B : in std_logic_vector(3 downto 0);
+			C_in : in std_logic;
+			C_out : out std_logic;
+			O : out std_logic_vector(3 downto 0)
+		);
+	end component;
 end package;
+
+
 
 

@@ -5,6 +5,7 @@ VHDL_FILES =\
 	src/xor_gate.vhd \
 	src/ha_gate.vhd \
 	src/fa_gate.vhd \
+	src/adder4bit_gate.vhd \
 	src/test.vhd \
 	tb/test_tb.vhd
 
