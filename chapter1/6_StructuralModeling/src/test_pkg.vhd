@@ -8,9 +8,18 @@ package test_pkg is
 		--scaral (int4, uint4, enum weekday)
 		--arrays (int4 array, unconstrained array, weekdays)
 		--records (point(a,b), points = array of points)
+	type point_t is record 
+		a : integer;
+		b : integer;
+	end record;
+
+	type points_t is array(integer range 7 downto 0) of point_t;
+	--type int4_vector_t is array(integer range <>) of int4_t;
 	
 	--define subtypes:
 		--positive, natural subtype of integer
+	subtype positive_t is integer range 1 to integer'high-1;
+	subtype natural_t is integer range 0 to integer'high-1;
 
 
 	--build own std_ulogic and std_logic type
@@ -19,8 +28,11 @@ package test_pkg is
 	--needs resolve function to work correctly
 	type std_logic_t is ('U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-');
 
+	--enum tpye
+	type weekdays_t is (MO,DI,MI,DO,FR,SA,SO);
 
-	--components declaration
+
+	--components declaration -> use entity structure and change entity to component
 		--component and_gate
 	component and_gate is
 		port(
