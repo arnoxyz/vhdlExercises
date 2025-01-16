@@ -6,10 +6,10 @@ use ieee.math_real.all;
 use work.math_pkg.all;
 use work.test_pkg.all;
 
-entity test_tb is
+entity simple_timer_tb is
 end entity;
 
-architecture tb of test_tb is
+architecture tb of simple_timer_tb is
 begin
 	UUT : entity work.test(beh_test);
 
