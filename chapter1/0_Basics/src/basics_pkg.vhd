@@ -6,7 +6,6 @@ package test_pkg is
 	--constant declaration
 	constant SCREEN_WIDTH : integer := 720;
 	constant SCREEN_HEIGHT : integer := 480;
-	
 end package;
 
 
