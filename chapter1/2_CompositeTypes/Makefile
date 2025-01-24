@@ -1,11 +1,11 @@
 VHDL_FILES =\
 	../../../lib/math/src/math_pkg.vhd\
-	src/test_pkg.vhd \
-	src/test.vhd \
-	tb/test_tb.vhd
+	src/compositeTypes_pkg.vhd \
+	src/compositeTypes.vhd \
+	tb/compositeTypes_tb.vhd
 
 
-TB=test_tb
+TB=compositeTypes_tb
 WAVE_FILE=wave.do
 
 include ../../../util/simple_flow.mk
