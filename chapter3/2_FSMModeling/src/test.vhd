@@ -4,29 +4,16 @@ use ieee.numeric_std.all;
 use work.math_pkg.all;
 use work.test_pkg.all;
 
---empty entity 
-entity test is
+
+--simple_timer
+entity simple_timer is
+
 end entity;
 
-architecture beh_test of test is 
+
+--FSM Template 
+--simple timer
+
+architecture arch of simple_timer is 
 begin 
-	process1: process 
-		variable a : boolean;
-		variable b : boolean;
-		variable x : integer;
-		variable y : integer;
-	begin 
-		report "test start";
-		report "hello world";
-		a := true;
-		b := true;
-		report "a and b =>" & to_string(a and b);
-
-		x := 10;
-		y := 20;
-		report "x + y =>" & to_string(x+y);
-
-		report "test done";
-		wait;
-	end process;
 end architecture;

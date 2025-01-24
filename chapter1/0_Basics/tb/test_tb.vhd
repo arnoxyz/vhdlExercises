@@ -15,6 +15,8 @@ begin
 
 	-- Instantiate UUT here
 		--select the testing architecture of the design
+	UUT1 : entity work.test(beh_test3);
+	UUT2 : entity work.test(beh_test3);
 	UUT : entity work.test(beh_test3);
 	--add port map();
 
