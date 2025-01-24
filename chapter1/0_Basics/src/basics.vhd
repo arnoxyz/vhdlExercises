@@ -1,3 +1,13 @@
+--Syntax overview:
+--Declare Variables/Constants:
+	--constant NAME : DataType [:= DefaultVal];
+	--variable Name : DataType [:= DefaultVal];
+--Use Variables/Constants
+	--Name := Name * 3 + CONST;
+
+--Print Output Text and Variables 
+	--report "test " & to_string(varName);
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -12,9 +22,6 @@ architecture beh_basics of basics is
 begin 
 
 	process1: process 
-		--Declare Variables/Constants:
-		--constant NAME : DataType [:= DefaultVal];
-		--variable Name : DataType [:= DefaultVal];
 		variable a : boolean;
 		variable b : boolean;
 
